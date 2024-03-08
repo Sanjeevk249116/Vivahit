@@ -341,7 +341,7 @@ function Carousal() {
     SetTrending(array);
     // console.log(data)
   };
-  console.log(trending);
+ 
   useEffect(() => {
     fetchTrandindCoins();
   }, [currency]);

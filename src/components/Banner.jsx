@@ -33,6 +33,7 @@ function Banner() {
               fontWeight: "bold",
               marginBottom: 15,
               fontFamily: "montserrat",
+              textAlign:"center"
             }}
           >
             Crypto Project
@@ -43,6 +44,7 @@ function Banner() {
               color: "darkgray",
               textTransform: "capitalize",
               fontFamily: "montserrat",
+              textAlign:"center"
             }}
           >
             Get all details about your favorite crypto currency.
