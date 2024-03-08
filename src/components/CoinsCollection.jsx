@@ -17,6 +17,7 @@ import {
   createTheme,
   makeStyles,
 } from "@material-ui/core";
+import { Pagination } from "@material-ui/lab";
 import { useNavigate } from "react-router-dom";
 const array = [
   {
@@ -3009,7 +3010,21 @@ const array = [
   },
 ];
 
-const useStyles = makeStyles({});
+const useStyles = makeStyles(() => ({
+  row: {
+    backgroundColor: "#16171a",
+    cursor: "pointer",
+    "&:hover": {
+      backgroundColor: "gray",
+    },
+    fontFamily: "Montserrat",
+  },
+  pagination: {
+    "& .MuiPaginationItem-root": {
+      color: "blue",
+    },
+  },
+}));
 
 const darkTheme = createTheme({
   palette: {
@@ -3023,6 +3038,7 @@ const darkTheme = createTheme({
 function CoinsCollection() {
   const { currency, symbol } = useContext(AppContextData);
   const [coins, setCoins] = useState([]);
+  const [pages, setpages] = useState(1);
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
@@ -3091,60 +3107,85 @@ function CoinsCollection() {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {handleSearch().map((el) => {
-                  const profit = el.price_change_percentage_24h > 0;
-                  return (
-                    <TableRow
-                      onClick={() => handleNavigate(el.id)}
-                      className={classes.row}
-                      key={el.id}
-                    >
-                      <TableCell
-                        component="th"
-                        scope="row"
-                        style={{ display: "flex", gap: 15 }}
+                {handleSearch()
+                  .slice((pages - 1) * 10, (pages - 1) * 10 + 10)
+                  .map((el) => {
+                    const profit = el.price_change_percentage_24h > 0;
+                    return (
+                      <TableRow
+                        onClick={() => handleNavigate(el.id)}
+                        className={classes.row}
+                        key={el.id}
                       >
-                        <img
-                          src={el?.image}
-                          alt={el?.name}
-                          height="50"
-                          style={{ marginBottom: 10 }}
-                        />
-                        <div
-                          style={{ display: "flex", flexDirection: "column" }}
+                        <TableCell
+                          component="th"
+                          scope="row"
+                          style={{ display: "flex", gap: 15 }}
                         >
-                          <span
-                            style={{
-                              textTransform: "uppercase",
-                              fontSize: 22,
-                            }}
+                          <img
+                            src={el?.image}
+                            alt={el?.name}
+                            height="50"
+                            style={{ marginBottom: 10 }}
+                          />
+                          <div
+                            style={{ display: "flex", flexDirection: "column" }}
                           >
-                            {el?.symbol}
-                          </span>
-                          <span style={{ color: "darkgrey" }}>{el?.name}</span>
-                        </div>
-                      </TableCell>
-                      <TableCell align="right">
-                        {symbol}{" "}
-                        {numberWithCommas(el?.current_price.toFixed(2))}
-                      </TableCell>
-                      <TableCell
-                        align="right"
-                        style={{
-                          color: profit > 0 ? "rgb(14, 203, 129)" : "red",
-                          fontWeight: 500,
-                        }}
-                      >
-                        {profit && "+"}
-                        {el?.price_change_percentage_24h.toFixed(2)}%
-                      </TableCell>
-                    </TableRow>
-                  );
-                })}
+                            <span
+                              style={{
+                                textTransform: "uppercase",
+                                fontSize: 22,
+                              }}
+                            >
+                              {el?.symbol}
+                            </span>
+                            <span style={{ color: "darkgrey" }}>
+                              {el?.name}
+                            </span>
+                          </div>
+                        </TableCell>
+                        <TableCell align="right">
+                          {symbol}{" "}
+                          {numberWithCommas(el?.current_price.toFixed(2))}
+                        </TableCell>
+                        <TableCell
+                          align="right"
+                          style={{
+                            color: profit > 0 ? "rgb(14, 203, 129)" : "red",
+                            fontWeight: 500,
+                          }}
+                        >
+                          {profit && "+"}
+                          {el?.price_change_percentage_24h.toFixed(2)}%
+                        </TableCell>
+                        <TableCell align="right">
+                          {symbol}{" "}
+                          {numberWithCommas(
+                            el?.market_cap.toString().slice(0, -6)
+                          )}
+                          M
+                        </TableCell>
+                      </TableRow>
+                    );
+                  })}
               </TableBody>
             </Table>
           )}
         </TableContainer>
+        <Pagination
+          style={{
+            padding: 25,
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+          }}
+          className={classes.pagination}
+          count={(handleSearch()?.length / 10).toFixed(0)}
+          onChange={(_,idx)=>{
+            setpages(idx);
+            window.scroll(0,450)
+          }}
+        />
       </Container>
     </ThemeProvider>
   );

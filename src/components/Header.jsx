@@ -16,7 +16,7 @@ import { AppContextData } from "../cryptoContext/AuthContext";
 const useStyles = makeStyles(() => ({
   title: {
     flex: 1,
-    color: "gold",
+    color: "#f70000",
     fontFamily: "montserrat",
     fontWeight: "bold",
     cursor: "pointer",
