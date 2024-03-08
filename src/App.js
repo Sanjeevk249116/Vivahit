@@ -1,23 +1,23 @@
 import "./App.css";
+import { makeStyles } from "@material-ui/core/styles";
 
 import Button from "@material-ui/core/Button";
+import MainRouter from "./routers/MainRouter";
+import Header from "./components/Header";
 
+const useStyles = makeStyles(() => ({
+  App: {
+    backgroundColor: "#14161a",
+    color:"white",
+    minHeight:'100vh'
+  },
+}));
 function App() {
+  const classes = useStyles();
   return (
-    <div className="App">
-      <Button variant="contained">Default</Button>
-      <Button variant="contained" color="primary">
-        Primary
-      </Button>
-      <Button variant="contained" color="secondary">
-        Secondary
-      </Button>
-      <Button variant="contained" disabled>
-        Disabled
-      </Button>
-      <Button variant="contained" color="primary" href="#contained-buttons">
-        Link
-      </Button>
+    <div className={classes.App}>
+      <Header />
+      <MainRouter />
     </div>
   );
 }
