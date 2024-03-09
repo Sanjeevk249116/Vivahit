@@ -1,64 +1,16 @@
 import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
-import ReactHtmlParser from "react-html-parser";
+// import {ReactHtmlParser} from "react-html-parser";
 import { useParams } from "react-router-dom";
-import { LinearProgress, Typography, makeStyles } from "@material-ui/core";
 import { AppContextData } from "../cryptoContext/AuthContext";
 import { SingleCoin } from "../apidata/api";
 import CoinsDetails from "../components/CoinsDetails";
+import { LinearProgress, Typography} from "@mui/material";
 
-const useStyles = makeStyles((theme) => ({
-  container: {
-    display: "flex",
-    [theme.breakpoints.down("md")]: {
-      flexDirection: "column",
-      alignItems: "center",
-    },
-  },
-  sideleft: {
-    width: "30%",
-    [theme.breakpoints.down("md")]: {
-      width: "100%",
-    },
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    marginTop: 25,
-    borderRight: "2px solid grey",
-  },
-  heading: {
-    fontWeight: "bold",
-    marginBottom: 20,
-    fontFamily: "Montserrat",
-  },
-  description: {
-    width: "100%",
-    fontFamily: "Montserrat",
-    padding: 25,
-    paddingBottom: 15,
-    paddingTop: 0,
-  },
-  marketData: {
-    alignSelf: "start",
-    padding: 25,
-    paddingTop: 10,
-    width: "100%",
-    [theme.breakpoints.down("md")]: {
-      display: "flex",
-      justifyContent: "space-around",
-    },
-    [theme.breakpoints.down("sm")]: {
-      flexDirection: "column",
-      alignItems: "center",
-    },
-    [theme.breakpoints.down("xs")]: {
-      alignItems: "start",
-    },
-  },
-}));
+
 
 function CoinPages() {
-  const classes = useStyles();
+  
   const { id } = useParams();
   const [coin, setCoin] = useState();
   const { currency, symbol } = useContext(AppContextData);
@@ -79,24 +31,24 @@ function CoinPages() {
   if (!coin) return <LinearProgress style={{ backgroundColor: "red" }} />;
 
   return (
-    <div className={classes.container}>
-      <div className={classes.sideleft}>
+    <div className='container'>
+      <div className='sideleft'>
         <img
           src={coin?.image.large}
           alt={coin?.name}
           height="200"
           style={{ marginBottom: 20 }}
         />
-        <Typography variant="h3" className={classes.heading}>
+        <Typography variant="h3" className='heading'>
           {coin?.name}
         </Typography>
-        <Typography variant="subtitle1" className={classes.description}>
-          {ReactHtmlParser(coin?.description.en.split(". ")[0])}.
+        <Typography variant="subtitle1" className='description'>
+          {/* {ReactHtmlParser(coin?.description.en.split(". ")[0])}. */}
         </Typography>
 
-        <div className={classes.marketData}>
+        <div className='marketData'>
           <span style={{ display: "flex" }}>
-            <Typography variant="h5" className={classes.heading}>
+            <Typography variant="h5" className='heading'>
               Rank:
             </Typography>
             &nbsp; &nbsp;
@@ -111,7 +63,7 @@ function CoinPages() {
           </span>
 
           <span style={{ display: "flex" }}>
-            <Typography variant="h5" className={classes.heading}>
+            <Typography variant="h5" className='heading'>
               Current Price:
             </Typography>
             &nbsp; &nbsp;
@@ -128,7 +80,7 @@ function CoinPages() {
             </Typography>
           </span>
           <span style={{ display: "flex" }}>
-            <Typography variant="h5" className={classes.heading}>
+            <Typography variant="h5" className='heading'>
               Market price:
             </Typography>
             &nbsp; &nbsp;

@@ -13,31 +13,15 @@ import {
   CircularProgress,
   ThemeProvider,
   createTheme,
-  makeStyles,
-} from "@material-ui/core";
+
+} from "@mui/material";
 import { AppContextData } from "../cryptoContext/AuthContext";
 import { HistoricalChart } from "../apidata/api";
 
 import { chartDays } from "../apidata/data";
 import SelectButton from "./SelectButton";
 ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement);
-const useStyles = makeStyles((theme) => ({
-  container: {
-    width: "75%",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: 25,
-    padding: 40,
-    [theme.breakpoints.down("md")]: {
-      width: "100%",
-      marginTop: 0,
-      padding: 20,
-      paddingTop: 0,
-    },
-  },
-}));
+
 const darkTheme = createTheme({
   palette: {
     primary: {
@@ -51,7 +35,7 @@ function CoinsDetails({ coin }) {
   const [days, setDays] = useState(1);
   const { currency } = useContext(AppContextData);
   const [flag, setflag] = useState(false);
-  const classes = useStyles();
+
 
   const fetchHistoricData = async () => {
     const { data } = await axios.get(HistoricalChart(coin.id, days, currency));
@@ -66,7 +50,7 @@ function CoinsDetails({ coin }) {
   console.log(days);
   return (
     <ThemeProvider theme={darkTheme}>
-      <div className={classes.container}>
+      <div className='conatianerDetails'>
         {!historicData || flag === false ? (
           <CircularProgress style={{ color: "red" }} size={250} thickness={1} />
         ) : (

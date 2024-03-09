@@ -1,10 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AppContextData } from "../cryptoContext/AuthContext";
 import axios from "axios";
+import { ArrowBack as ArrowBackIcon, ArrowForward as ArrowForwardIcon } from '@mui/icons-material';
 import { CoinList } from "../apidata/api";
 import {
   Container,
   LinearProgress,
+  Pagination,
+  PaginationItem,
+  Stack,
   Table,
   TableBody,
   TableCell,
@@ -15,9 +19,9 @@ import {
   ThemeProvider,
   Typography,
   createTheme,
-  makeStyles,
-} from "@material-ui/core";
-import { Pagination } from "@material-ui/lab";
+ 
+} from "@mui/material";
+
 import { useNavigate } from "react-router-dom";
 const array = [
   {
@@ -3010,21 +3014,6 @@ const array = [
   },
 ];
 
-const useStyles = makeStyles(() => ({
-  row: {
-    backgroundColor: "#16171a",
-    cursor: "pointer",
-    "&:hover": {
-      backgroundColor: "gray",
-    },
-    fontFamily: "Montserrat",
-  },
-  pagination: {
-    "& .MuiPaginationItem-root": {
-      color: "blue",
-    },
-  },
-}));
 
 const darkTheme = createTheme({
   palette: {
@@ -3042,7 +3031,7 @@ function CoinsCollection() {
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
-  const classes = useStyles();
+ 
   const fetchCoinsCollections = async () => {
     setLoading(true);
    try{
@@ -3085,7 +3074,9 @@ function CoinsCollection() {
         <TextField
           label="Search Crypto Currency"
           variant="outlined"
+          sx={{color:'white',border:"1px solid white"}}
           style={{ marginBottom: 20, width: "100%" }}
+          InputLabelProps={{ style: { color: 'white' } }}
           onChange={(e) => setSearch(e.target.value)}
         />
         <TableContainer>
@@ -3116,7 +3107,14 @@ function CoinsCollection() {
                     return (
                       <TableRow
                         onClick={() => handleNavigate(el.id)}
-                        className={classes.row}
+                        style={{
+                          backgroundColor: "#16171a",
+                          cursor: "pointer",
+                          "&:hover": {
+                            backgroundColor: "gray",
+                          },
+                          fontFamily: "Montserrat",
+                        }}
                         key={el.id}
                       >
                         <TableCell
@@ -3137,6 +3135,7 @@ function CoinsCollection() {
                               style={{
                                 textTransform: "uppercase",
                                 fontSize: 22,
+                                color:'white',
                               }}
                             >
                               {el?.symbol}
@@ -3146,7 +3145,7 @@ function CoinsCollection() {
                             </span>
                           </div>
                         </TableCell>
-                        <TableCell align="right">
+                        <TableCell align="right" style={{color:"white"}}>
                           {symbol}{" "}
                           {numberWithCommas(el?.current_price.toFixed(2))}
                         </TableCell>
@@ -3155,12 +3154,13 @@ function CoinsCollection() {
                           style={{
                             color: profit > 0 ? "rgb(14, 203, 129)" : "red",
                             fontWeight: 500,
+                            
                           }}
                         >
                           {profit && "+"}
                           {el?.price_change_percentage_24h.toFixed(2)}%
                         </TableCell>
-                        <TableCell align="right">
+                        <TableCell align="right" style={{color:"white"}}>
                           {symbol}{" "}
                           {numberWithCommas(
                             el?.market_cap.toString().slice(0, -6)
@@ -3174,20 +3174,31 @@ function CoinsCollection() {
             </Table>
           )}
         </TableContainer>
-        <Pagination
-          style={{
-            padding: 25,
-            width: "100%",
-            display: "flex",
-            justifyContent: "center",
-          }}
-          className={classes.pagination}
-          count={(handleSearch()?.length / 10).toFixed(0)}
-          onChange={(_,idx)=>{
-            setpages(idx);
-            window.scroll(0,450)
-          }}
-        />
+        
+        <Stack spacing={2}>
+      <Pagination
+       style={{
+        padding: 25,
+        width: "100%",
+        display: "flex",
+        justifyContent: "center",
+        color:"blue",
+        
+      }}
+      onChange={(_,idx)=>{
+        setpages(idx);
+        window.scroll(0,450)
+      }}
+      count={(handleSearch()?.length / 10).toFixed(0)}
+        renderItem={(item) => (
+          <PaginationItem
+            slots={{ previous: ArrowBackIcon, next: ArrowForwardIcon }}
+            {...item}
+            sx={{ color: 'blue' }} 
+          />
+        )}
+      />
+    </Stack>
       </Container>
     </ThemeProvider>
   );

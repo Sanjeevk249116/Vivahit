@@ -1,4 +1,4 @@
-import { makeStyles } from "@material-ui/core";
+
 import axios from "axios";
 import AliceCarousel from "react-alice-carousel";
 import React, { useContext, useEffect, useState } from "react";
@@ -6,21 +6,8 @@ import { AppContextData } from "../cryptoContext/AuthContext";
 import { TrendingCoins } from "../apidata/api";
 import { Link } from "react-router-dom";
 
-const useStyles = makeStyles((theme) => ({
-  carousal: {
-    height: "50%",
-    display: "flex",
-    alignItems: "center",
-  },
-  carousalItems:{
-    display:"flex",
-    flexDirection:"column",
-    alignItems:"center",
-    cursor:"pointer",
-    textTransformm:"Uppercase",
-    color:"white"
-  }
-}));
+
+
 const array = [
   {
     id: "bitcoin",
@@ -332,7 +319,7 @@ const numberWithCommas = (s) => {
 };
 
 function Carousal() {
-  const classes = useStyles();
+ 
   const [trending, SetTrending] = useState([]);
   const { currency, symbol } = useContext(AppContextData);
 
@@ -354,7 +341,14 @@ function Carousal() {
   const items = trending.map((el) => {
     let profit = el.price_change_percentage_24h >= 0;
     return (
-      <Link className={classes.carousalItems} to={`/coins/${el.id}`}>
+      <Link style={{
+        display:"flex",
+        flexDirection:"column",
+        alignItems:"center",
+        cursor:"pointer",
+        textTransformm:"Uppercase",
+        color:"white"
+      }} to={`/coins/${el.id}`}>
         <img
           src={el?.image}
           alt={el?.name}
@@ -388,7 +382,11 @@ function Carousal() {
     },
   };
   return (
-    <div className={classes.carousal}>
+    <div style={{
+      height: "50%",
+      display: "flex",
+      alignItems: "center",
+    }}>
       <AliceCarousel
         mouseTracking
         infinite
