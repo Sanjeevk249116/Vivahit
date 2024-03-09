@@ -3045,9 +3045,9 @@ function CoinsCollection() {
   const classes = useStyles();
   const fetchCoinsCollections = async () => {
     setLoading(true);
-    // const data= await axios.get(CoinList(currency))
+    const {data}= await axios.get(CoinList(currency))
     // console.log(data)
-    setCoins(array);
+    setCoins(data);
     setLoading(false);
   };
 
@@ -3091,7 +3091,7 @@ function CoinsCollection() {
             <Table>
               <TableHead style={{ backgroundColor: "#EEBC1D" }}>
                 <TableRow>
-                  {["Coin", "Price", "24h Change", "Market Cap"].map((el) => (
+                  {["Coin", "Price", "24h Change", "Market Cap"]?.map((el) => (
                     <TableCell
                       style={{
                         color: "black",
@@ -3107,9 +3107,7 @@ function CoinsCollection() {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {handleSearch()
-                  .slice((pages - 1) * 10, (pages - 1) * 10 + 10)
-                  .map((el) => {
+                {handleSearch()?.slice((pages - 1) * 10, (pages - 1) * 10 + 10)?.map((el) => {
                     const profit = el.price_change_percentage_24h > 0;
                     return (
                       <TableRow
