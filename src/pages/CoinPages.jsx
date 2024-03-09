@@ -63,8 +63,12 @@ function CoinPages() {
   const [coin, setCoin] = useState();
   const { currency, symbol } = useContext(AppContextData);
   const fetchSingleCoinData = async () => {
+  try{
     const { data } = await axios.get(SingleCoin(id));
     setCoin(data);
+  }catch{
+   
+  }
   };
   useEffect(() => {
     fetchSingleCoinData();

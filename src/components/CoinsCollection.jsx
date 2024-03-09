@@ -3045,9 +3045,13 @@ function CoinsCollection() {
   const classes = useStyles();
   const fetchCoinsCollections = async () => {
     setLoading(true);
+   try{
     const {data}= await axios.get(CoinList(currency))
     // console.log(data)
     setCoins(data);
+   }catch{
+    setCoins(array)
+   }
     setLoading(false);
   };
 

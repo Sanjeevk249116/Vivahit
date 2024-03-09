@@ -337,8 +337,13 @@ function Carousal() {
   const { currency, symbol } = useContext(AppContextData);
 
   const fetchTrandindCoins = async () => {
-    const { data } = await axios.get(TrendingCoins(currency));
-    SetTrending(data);
+   
+    try{
+      const { data } = await axios.get(TrendingCoins(currency));
+      SetTrending(data);
+    }catch{
+      SetTrending(array)
+    }
     // console.log(data)
   };
  
