@@ -1,3 +1,72 @@
+# Crypto Currency
+
+## Introduction
+
+Discover the future of finance with our innovative React project! Seamlessly blending cutting-edge technology with user-friendly interfaces, our project empowers users to explore and engage with the dynamic world of cryptocurrency. From tracking portfolios to executing trades, our platform offers intuitive features for both seasoned traders and newcomers alike. Join us and embark on your journey towards financial exploration and empowerment.
+
+## Project Type
+
+Front-end project
+
+## Deplolyed App
+
+Frontend: https://chesses-app.vercel.app<br>
+GitHub: https://github.com/Sanjeevk249116/vivahit<br>
+
+
+## Directory Structure
+
+vivahit/
+├─ vivahit/
+│ ├─ src
+├─ cryptoContext
+├─ components
+├─ pages
+├─ routers
+
+## Video Walkthrough of the project
+
+Project Demo: https://drive.google.com/file/d/1_omifgatOimHP19f022okqexHYvo6LpF/view?usp=sharing
+
+
+
+## Features
+
+
+Some of the best features of my project include:
+
+Real-time data fetching: Our project fetches real-time data, providing up-to-date information on cryptocurrency trends.
+Top cryptocurrency of the last 24 hours: Users can easily identify the best-performing cryptocurrency in the last 24 hours.
+Visualize any coin: With React Chart.js integration, users can visualize the performance of any cryptocurrency.
+View data for the last 24 hours: Users have access to detailed data for the past 24 hours, enabling informed decision-making.
+View data for the last 30 days: Our project allows users to analyze cryptocurrency trends over the past 30 days.
+View data for the last year: Users can also explore historical data for the past year, gaining valuable insights into long-term trends.
+
+
+
+
+## design decisions or assumptions
+
+ <h3>Screenshots</h3>
+
+ <h4>laptop</h4>
+
+<img src='https://i.ibb.co/mRvhFGv/lapfront1.png' alt='img' />
+<img src='https://i.ibb.co/64j1Bsc/lap2.png' alt='img' />
+
+<h4>Tablet</h4>
+
+<img src='https://i.ibb.co/YdwzHNS/tab1.png' alt='img' />
+<img src='https://i.ibb.co/nBYqmJN/tab2.png' alt='img' />
+
+<h4>Mobile</h4>
+
+<img src='https://i.ibb.co/sQ4nDHs/mol1.png' alt='img' />
+<img src='https://i.ibb.co/JQKc0J1/mol2.png' alt='img' />
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
