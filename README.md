@@ -10,7 +10,7 @@ Front-end project
 
 ## Deplolyed App
 
-Frontend: https://chesses-app.vercel.app<br>
+Frontend:https://vivahit-gamma.vercel.app/<br>
 GitHub: https://github.com/Sanjeevk249116/vivahit<br>
 
 
